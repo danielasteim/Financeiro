@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #003366;  /* Azul escuro */
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        h2, h3 {
+            color: #003366;  /* Azul escuro */
+            text-align: center;
+        }
+        button {
+            background-color: #ffcc00;  /* Amarelo */
+            border: none;
+            color: #003366;  /* Azul escuro */
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #e6b800;  /* Amarelo mais escuro */
+        }
+        main {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        a {
+            text-decoration: none;
+        }
+        a button {
+            margin: 10px;
+        }
+        h3 {
+            margin-top: 30px;
+            font-size: 1.5em;
+            text-transform: uppercase;
+        }
+        a button {
+            background-color: #003366;
+            color: #fff;
+        }
+        
+        a button:hover {
+            background-color: #002244;
+        }
+        
+    </style>
+    <title>Pagamentos</title>
+</head>
+<body>
+    <header>
+        <h1>Pagamentos</h1>
+    </header>
+    <main>
+        <h2>Lista de Funcionários</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Nome Completo</th>
+                    <th>Status do Pagamento</th>
+                    <th>Valor do Salário</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for funcionario in funcionarios %}
+                <tr>
+                    <td>{{ funcionario.nome_completo }}</td>
+                    <td>{{ funcionario.status_pagamento }}</td>
+                    <td>R$ {{ funcionario.salario }}</td>
+                    <td>
+                        {% if funcionario.status_pagamento == "Pendente" %}
+                        <button onclick="pagar('{{ funcionario.nome_completo }}')">Pagar</button>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <a href="/admin">Voltar para a página do administrador</a>
+    </main>
+
+    <script>
+        function pagar(nomeFuncionario) {
+            if (confirm(`Deseja realmente pagar o salário de ${nomeFuncionario}?`)) {
+                // Faz uma requisição para a rota de pagamento
+                fetch(`/pagar/${nomeFuncionario}`)
+                    .then(response => response.text())
+                    .then(data => {
+                        alert(data); // Exibe a mensagem de sucesso
+                        window.location.reload(); // Recarrega a página para atualizar os dados
+                    })
+                    .catch(error => console.error('Erro ao realizar pagamento:', error));
+            }
+        }
+    </script>
+</body>
+</html>

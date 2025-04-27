@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #003366;  /* Azul escuro */
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        h2, h3 {
+            color: #003366;  /* Azul escuro */
+            text-align: center;
+        }
+        button {
+            background-color: #ffcc00;  /* Amarelo */
+            border: none;
+            color: #003366;  /* Azul escuro */
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #e6b800;  /* Amarelo mais escuro */
+        }
+        main {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        a {
+            text-decoration: none;
+        }
+        a button {
+            margin: 10px;
+        }
+        h3 {
+            margin-top: 30px;
+            font-size: 1.5em;
+            text-transform: uppercase;
+        }
+        a button {
+            background-color: #003366;
+            color: #fff;
+        }
+        
+        a button:hover {
+            background-color: #002244;
+        }
+        
+    </style>
+    <title>Página de Administração</title>
+</head>
+<body>
+    <header>
+        <h1>Página de Administração</h1>
+    </header>
+    <main>
+        <h2>Ações principais do administrador</h2>
+
+        <!-- Botão para realizar pagamentos -->
+        <a href="/pagamentos">
+            <button>Realizar Pagamento</button>
+        </a>
+
+        <h3>Gerenciar Dados</h3>
+        <!-- Botões para adicionar itens -->
+        <a href="/admin/adicionar?tipo=plano">
+            <button>Adicionar Plano de Mensalidade</button>
+        </a>
+        <a href="/admin/adicionar?tipo=funcionario">
+            <button>Adicionar Funcionário</button>
+        </a>
+        <a href="/admin/adicionar?tipo=conta">
+            <button>Adicionar Conta Financeira</button>
+        </a>
+
+        <h3>Relatórios de Receita</h3>
+        <!-- Botões para acessar relatórios -->
+        <button onclick="window.location.href='/relatorios?tipo=diario'">Relatório Diário</button>
+        <button onclick="window.location.href='/relatorios?tipo=mensal'">Relatório Mensal</button>
+        <button onclick="window.location.href='/relatorios?tipo=anual'">Relatório Anual</button>
+
+        <h3>Gerenciar Dados</h3>
+        <!-- Botões para editar ou remover dados -->
+        <button onclick="window.location.href='/contas/editar/1'">Editar Contas</button>
+        <button onclick="window.location.href='/contas/remover/1'">Remover Contas</button>
+
+        <h3>Gerenciar Mensalidades</h3>
+        <!-- Botão para atualizar valores de mensalidade -->
+        <button onclick="window.location.href='/mensalidade/atualizar/1'">Atualizar Valores de Mensalidade</button>
+
+        <h3>Gerenciar Contratos de Clientes</h3>
+        <!-- Botões para gerenciar contratos de clientes -->
+        <button onclick="window.location.href='/cliente/contrato?usuario_id=1'">Consultar Contrato Atual</button>
+        <button onclick="window.location.href='/cliente/editar-contrato'">Editar Contrato</button>
+
+        <h3>Gerenciar Cobranças</h3>
+        <!-- Botão para adicionar cobrança -->
+        <button onclick="window.location.href='/cobranca/adicionar'">Adicionar Cobrança</button>
+    </main>
+</body>
+</html>
